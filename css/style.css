@@ -1,0 +1,38 @@
+body {
+	text-align: center;
+	background-image: url("../images/round.png");
+}
+
+#page-wrap {
+	width: 800px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#lyrics-container {
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+#song-results {
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+#similarity-percentage-button {
+	text-align: center;
+	float: left;
+	font-family: 'Audiowide', cursive;
+}
+
+.jumbotron {
+	font-family: 'Monoton', cursive;
+	text-align: center;
+	color: #479F5C;
+
+}
+
+/*.btn {
+	color: #479F5C;
+}
+*/

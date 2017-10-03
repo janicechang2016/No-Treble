@@ -2,45 +2,80 @@
 <html>
 <head>
 	<title>No Treble</title>
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<!--<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">-->
+
+	<link href="https://fonts.googleapis.com/css?family=Audiowide|Monoton" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-
+<div id="page-wrap">
 	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
 	    <h1 class="display-3">No Treble</h1>
-	    <p class="lead">(Description of site goes here)</p>
+	    <!--<p class="lead">(Description of site goes here?)</p>-->
 	  </div>
 	</div>
 
 	<div class="form-group">
 		<div class="container" id="lyrics-container">
-			
+			<div class="row">
+				<div class="col-md-10">
+					<input class="form-control" id="lyrics" placeholder="Enter your lyrics here!">
+				</div>	
+
+				<div class="col-md-2" id="search-button">			
+					<button type="submit" class="btn btn-success active">Search</button>
+				</div>	
+
+			</div>
+		</div>
+	</div>
+
+
+	<br><br><br>
+
+
+	<div class="container" id="song-results">
+		<div class="row">
+			<div class="col-md-6" id="album-cover-image">
+				Album Image and song player will go here
+			</div>
+
+			<div class="col-md-6" id="results-lyrics">
+				Lyrics will go here
+			</div>
 		</div>
 
 
+		<br><br><br>
 
-		<input class="form-control" id="lyrics" placeholder="Enter your lyrics here!">
-		<button type="submit" class="btn btn-primary">Search</button>
-  
 
+		<div class="row" id="similarity-percentage-button">
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-success active">Compare Lyrics</button>
+			</div>
+			
+		</div>
+		
 	</div>
 
 
 
 
 	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-	<script type="text/javascript" src="javascript/script.js"></script>
-
+	<script type="text/javascript" src="javascript/script.js"></script> -->
+</div>
 </body>
 </html>
 
 
-<!--pseudocode for js here-->
+<!--
+pseudocode for js here
 1. on click, pull up ten songs (alphabetical, popularity, etc.)
 	make call to Genius API to get LYRICS (or musixmatch API?)
 	this will display the similar lyrics highlighted 
@@ -59,3 +94,4 @@
 	remove doubles of words so only unique words are left
 
 6. dynamically creating divs
+-->
