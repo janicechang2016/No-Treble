@@ -15,12 +15,9 @@ console.log("javascript working!")
 
 
 var query = "brown eyed girl";
+console.log(query);
 
-for (i = 0; i < query.length, i++);
-
- 
-
-var queryConverted = query.replace(" ", "%20");
+queryConverted = query.split(" ").join("%20")
 
 console.log(queryConverted);
 
