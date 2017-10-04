@@ -14,16 +14,58 @@ console.log("javascript working!")
   database = firebase.database();
 
 
-var query = "brown eyed girl";
-console.log(query);
+$(document).ready(function(){
 
-queryConverted = query.split(" ").join("%20")
 
-console.log(queryConverted);
+  $("#search-button").on("click", function(){
 
-queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + queryConverted;
 
-console.log(queryURL);
+
+
+    var query = $("#lyrics").val().trim();
+    
+    console.log(query);
+
+    queryConverted = query.split(" ").join("%20")
+
+    console.log(queryConverted);
+
+    queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + queryConverted;
+
+    console.log(queryURL);
+
+    $("#lyrics").val("")
+
+
+
+
+  })
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // queryURL = "https://api.musixmatch.com/ws/1.1/"
 
