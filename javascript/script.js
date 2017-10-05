@@ -16,32 +16,62 @@ console.log("javascript working!")
 
 $(document).ready(function(){
 
-
   $("#search-button").on("click", function(){
 
+    var query = $("#lyrics").val().trim().split(" ").join("%20");
 
-
-
-    var query = $("#lyrics").val().trim();
-    
-    console.log(query);
-
-    queryConverted = query.split(" ").join("%20")
-
-    console.log(queryConverted);
-
-    queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + queryConverted;
+    queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + query;
 
     console.log(queryURL);
 
-    $("#lyrics").val("")
+     $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(snap) {
+
+        resp = snap.response;
+
+        for (i = 0; i < resp.hits.length; i++) { 
+          var dv = $("<div>").addClass("container");
+          var titl = $("<h2>");
+          var imag = $("<img>");
+          var lyr = $("<p>");
+          var qURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + resp.hits[i].result.id
+
+          $.ajax({
+            url: qURL,
+            method: "GET"
+          }).done(function(snappy){
+
+            if (!snappy.lyrics){
+              console.log("there are no lyrics:( for " + resp.hits[i]);
+
+            } else{
+              console.log("there are lyrics" + resp.hits[i]);
+            }
+
+            console.log(snappy);
+             lyr.append(snappy.lyrics);
+             console.log(lyr);
+             
+          });
+
+          imag.attr("src", resp.hits[i].result.header_image_thumbnail_url);
+          titl.append(resp.hits[i].result.title);
 
 
 
+          dv.append(titl);
+          dv.append("<hr>");
+          dv.append(imag);
+          dv.append(lyr);
+          dv.append("<hr>");
 
-  })
+          $("#song-results").append(dv);
+        }
+      });
 
-
+  });
 })
 
 
