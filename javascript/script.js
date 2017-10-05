@@ -11,7 +11,12 @@ console.log("javascript working!")
   };
   firebase.initializeApp(config);
 
-  database = firebase.database();
+  var database = firebase.database();
+  var queryURL;
+
+  // local storage variable should be added to track recent queries
+
+  // var myStorage = window.localStorage;
 
 
 $(document).ready(function(){
@@ -46,6 +51,7 @@ $(document).ready(function(){
             if (!snappy.lyrics){
               console.log("there are no lyrics:( for " + resp.hits[i]);
 
+
             } else{
               console.log("there are lyrics" + resp.hits[i]);
             }
@@ -58,8 +64,6 @@ $(document).ready(function(){
 
           imag.attr("src", resp.hits[i].result.header_image_thumbnail_url);
           titl.append(resp.hits[i].result.title);
-
-
 
           dv.append(titl);
           dv.append("<hr>");
@@ -97,6 +101,10 @@ $(document).ready(function(){
 
 
 
+
+
+
+
 // queryURL = "https://api.musixmatch.com/ws/1.1/"
 
 // // <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP">
@@ -109,19 +117,6 @@ $(document).ready(function(){
 // curl --get --include 'https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/artist.get?artist_id=1039' \
 //   -H 'X-Mashape-Key: tymAkvmzc3msh93vtoFMlA6lOpxLp1FWvYWjsn4RZdPKYlKIqJ' \
 //   -H 'Accept: application/json'
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //   // authentication for genius API
