@@ -56,7 +56,7 @@ $(document).ready(function(){
 
     // for( i = 0; i < response.hits.length; i++ ){
     //   console.log(response.hits[i]);
-  }
+  })
 });
 
 // clears the search field
@@ -70,7 +70,7 @@ $(document).ready(function(){
 
 
 
-})
+
 
 
 
