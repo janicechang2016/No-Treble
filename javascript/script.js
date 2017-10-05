@@ -12,7 +12,6 @@ console.log("javascript working!")
   firebase.initializeApp(config);
 
   var database = firebase.database();
-
   var queryURL;
 
   // local storage variable should be added to track recent queries
@@ -40,15 +39,12 @@ $(document).ready(function(){
 
     queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + queryConverted;
 
+
     console.log(queryURL);
 
-    $("#lyrics").val("")
+      // ajax "get" call to genius API
 
-    // search button should clear div with results after subsequent searches.
-
-
-  })
-
+  console.log(queryURL)
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -56,10 +52,21 @@ $(document).ready(function(){
 
   .done(function(response){
 
-    for( i = 0; i < response.hits.length; i++ ){
-      console.log(response.hits[i]);
+    console.log(response);
+
+    // for( i = 0; i < response.hits.length; i++ ){
+    //   console.log(response.hits[i]);
   }
 });
+
+// clears the search field
+
+    $("#lyrics").val("")
+
+    // search button should clear div with results after subsequent searches.
+
+
+  })
 
 
 
@@ -100,19 +107,6 @@ $(document).ready(function(){
 // curl --get --include 'https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/artist.get?artist_id=1039' \
 //   -H 'X-Mashape-Key: tymAkvmzc3msh93vtoFMlA6lOpxLp1FWvYWjsn4RZdPKYlKIqJ' \
 //   -H 'Accept: application/json'
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //   // authentication for genius API
