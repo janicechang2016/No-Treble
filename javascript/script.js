@@ -11,7 +11,13 @@ console.log("javascript working!")
   };
   firebase.initializeApp(config);
 
-  database = firebase.database();
+  var database = firebase.database();
+
+  var queryURL;
+
+  // local storage variable should be added to track recent queries
+
+  // var myStorage = window.localStorage;
 
 
 $(document).ready(function(){
@@ -20,10 +26,12 @@ $(document).ready(function(){
   $("#search-button").on("click", function(){
 
 
-
-
     var query = $("#lyrics").val().trim();
-    
+
+    // should track of queries on local storage
+
+    // myStorage.push(query)
+
     console.log(query);
 
     queryConverted = query.split(" ").join("%20")
@@ -36,10 +44,23 @@ $(document).ready(function(){
 
     $("#lyrics").val("")
 
-
+    // search button should clear div with results after subsequent searches.
 
 
   })
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+
+  .done(function(response){
+
+    for( i = 0; i < response.hits.length; i++ ){
+      console.log(response.hits[i]);
+  }
+});
+
 
 
 })
