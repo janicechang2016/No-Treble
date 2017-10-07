@@ -1,4 +1,4 @@
-console.log("javascript working!")
+console.log("javascript working!");
 
 //Initialize Firebase
   var config = {
@@ -13,6 +13,8 @@ console.log("javascript working!")
 
   var database = firebase.database();
   var queryURL;
+  var lyrics;
+
 
   // local storage variable should be added to track recent queries
 
@@ -29,54 +31,77 @@ $(document).ready(function(){
 
     console.log(queryURL);
 
+
      $.ajax({
         url: queryURL,
         method: "GET"
-      }).done(function(snap) {
+      }).done(function(mainResponse) {
+        // console.log(mainResponse)
 
-        resp = snap.response;
+        mainResponseArray = mainResponse.response.hits;
 
-        for (i = 0; i < resp.hits.length; i++) { 
-          var dv = $("<div>").addClass("container");
-          var titl = $("<h2>");
-          var imag = $("<img>");
-          var lyr = $("<p>");
-          var qURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + resp.hits[i].result.id
+        for (i = 0; i < mainResponseArray.length; i++) { 
+          var mainContentDiv = $("<div>").addClass("container mainContent");
+          var title = $("<h2>");
+          var image = $("<img>");
+          var lyricalContent = $("<p>");
+          var songId = mainResponseArray[i].result.id;
+          var imageThumbnail = mainResponseArray[i].result.header_image_thumbnail_url;
+          var songTitle = mainResponseArray[i].result.title;
+          var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
+
+          // console.log(mainResponseArray[i]);
+          // console.log(title);
+          // console.log(image);
+          // console.log(lyricalContent);
+          // console.log(songId);
+          // console.log(imageThumbnail);
+          // console.log(songTitle);
+          // console.log(lyricsURL);
 
           $.ajax({
-            url: qURL,
+            url: lyricsURL,
             method: "GET"
-          }).done(function(snappy){
+          }).done(function(lyricsResponse){
 
-            if (!snappy.lyrics){
-              console.log("there are no lyrics:( for " + resp.hits[i]);
+            if (!lyricsResponse.lyrics){
+              console.log("there are no lyrics for this song :(");
 
 
             } else{
-              console.log("there are lyrics" + resp.hits[i]);
+              console.log("there are lyrics :)");
             }
 
-            console.log(snappy);
-             lyr.append(snappy.lyrics);
-             console.log(lyr);
+             console.log("Here are the lyrics for", songId, lyricsResponse.lyrics );
+             lyrics = lyricsResponse.lyrics;
+            lyricalContent.text(lyrics);
+
+
              
           });
 
-          imag.attr("src", resp.hits[i].result.header_image_thumbnail_url);
-          titl.append(resp.hits[i].result.title);
 
-          dv.append(titl);
-          dv.append("<hr>");
-          dv.append(imag);
-          dv.append(lyr);
-          dv.append("<hr>");
 
-          $("#song-results").append(dv);
-        }
+          image.attr("src", imageThumbnail);
+          image.attr("height", "250px");
+          image.attr("length", "auto");
+          image.css("float", "left");
+          title.text(songTitle);
+          mainContentDiv.append(title);
+          mainContentDiv.append(image);
+          mainContentDiv.append(lyricalContent);
+
+          $("#song-results").prepend(mainContentDiv);
+
+
+      }
+    })
+
+
       });
 
   });
-})
+
 
 
 
