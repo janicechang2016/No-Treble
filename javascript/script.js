@@ -44,12 +44,10 @@ $(document).ready(function(){
     counter++;
     var localObject = JSON.parse(localStorage.getItem('searchList'));
     var searchKey = "search#"+ counter;
-    console.log(searchKey)
-    console.log("Here is the local Object", localObject);
     localObject[searchKey] = searchField;
     localStorage.setItem('searchList', JSON.stringify(localObject));
     console.log("new search: ", searchField)
-    console.log("attempt to add new search to local object ", localObject);
+    console.log("Updated search list ", localObject);
     localStorage.setItem('searches', counter)
 
   }
@@ -65,7 +63,7 @@ $(document).ready(function(){
         url: queryURL,
         method: "GET"
       }).done(function(mainResponse) {
-        console.log(mainResponse)
+        // console.log(mainResponse)
 
         mainResponseArray = mainResponse.response.hits;
 
