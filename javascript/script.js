@@ -20,10 +20,6 @@ console.log("javascript working!");
   var searchField;
 
 
-  // local storage variable should be added to track recent queries
-
-  // var myStorage = window.localStorage;
-
 
 $(document).ready(function(){
 
@@ -35,28 +31,41 @@ $(document).ready(function(){
 
     // Puts the search info into local storage
     localStorage.setItem('searches', 1);
-    localStorage.setItem("search#" + 1, searchField);
+    var searchList = {"search#1": searchField }
+    localStorage.setItem('searchList',  JSON.stringify(searchList));
     console.log("There is now local Storage");
+    retrievedObject = localStorage.getItem('searchList');
+    console.log("Here is the object in local storage with search history",retrievedObject)
   } else{
-    console.log("There is preexisting localStorage");
+
+
+    console.log("There is pre-existing localStorage");
     var counter = localStorage.getItem('searches');
-    localStorage.setItem("search#" + counter, searchField);
     counter++;
-    localStorage.setItem('searches', counter);
+    var localObject = JSON.parse(localStorage.getItem('searchList'));
+    var searchKey = "search#"+ counter;
+    console.log(searchKey)
+    console.log("Here is the local Object", localObject);
+    localObject[searchKey] = searchField;
+    localStorage.setItem('searchList', JSON.stringify(localObject));
+    console.log("new search: ", searchField)
+    console.log("attempt to add new search to local object ", localObject);
+    localStorage.setItem('searches', counter)
+
   }
 
     var query = searchField.split(" ").join("%20");
 
     queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + query;
 
-    console.log(queryURL);
+    // console.log(queryURL);
 
 
      $.ajax({
         url: queryURL,
         method: "GET"
       }).done(function(mainResponse) {
-        // console.log(mainResponse)
+        console.log(mainResponse)
 
         mainResponseArray = mainResponse.response.hits;
 
@@ -68,9 +77,9 @@ $(document).ready(function(){
 
 
           function getLyrics(songId, imageThumbnail, songTitle ){
-            console.log(imageThumbnail);
-            console.log(songTitle);
-            console.log(songId);
+            // console.log(imageThumbnail);
+            // console.log(songTitle);
+            // console.log(songId);
 
 
 
@@ -82,14 +91,14 @@ $(document).ready(function(){
           }).done(function(lyricsResponse){
 
             if (!lyricsResponse.lyrics){
-              console.log("there are no lyrics for this song :(");
+              console.log("There are no lyrics for songID#", songId, " :(");
 
 
             } else{
-              console.log("there are lyrics :)");
+              console.log("There are lyrics for songID#", songId ," :)");
             }
 
-             console.log("Here are the lyrics for", songId, lyricsResponse.lyrics.slice(0,150));
+             console.log("Here are the lyrics for songId#", songId, songTitle, lyricsResponse.lyrics.slice(0,150));
 
 
           var title = $("<h2>");
@@ -112,7 +121,7 @@ $(document).ready(function(){
           mainContentDiv.append(image);
           mainContentDiv.append(lyricalContent);
 
-          $("#song-results").append(mainContentDiv);
+          $("#song-results").prepend(mainContentDiv);
 
 
 
