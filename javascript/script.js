@@ -42,10 +42,9 @@ $(document).ready(function(){
 
         for (i = 0; i < mainResponseArray.length; i++) { 
           var songId = mainResponseArray[i].result.id;          
-          console.log(songId);
-          getLyrics(songId);
           var imageThumbnail = mainResponseArray[i].result.header_image_thumbnail_url;
           var songTitle = mainResponseArray[i].result.title;
+          getLyrics(songId, imageThumbnail, songTitle);
 
           // console.log(mainResponseArray[i]);
           // console.log(title);
@@ -56,7 +55,12 @@ $(document).ready(function(){
           // console.log(songTitle);
           // console.log(lyricsURL);
 
-          function getLyrics(songId){
+          function getLyrics(songId, imageThumbnail, songTitle ){
+            console.log(imageThumbnail);
+            console.log(songTitle);
+            console.log(songId);
+
+
 
           var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
 
