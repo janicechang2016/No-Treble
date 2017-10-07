@@ -42,6 +42,7 @@ $(document).ready(function(){
 
         for (i = 0; i < mainResponseArray.length; i++) { 
           var mainContentDiv = $("<div>").addClass("container mainContent");
+
           var title = $("<h2>");
           var image = $("<img>");
           var lyricalContent = $("<p>");
@@ -49,7 +50,8 @@ $(document).ready(function(){
           var imageThumbnail = mainResponseArray[i].result.header_image_thumbnail_url;
           var songTitle = mainResponseArray[i].result.title;
           var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
-
+          mainContentDiv.attr("id", songId);
+          console.log("Song ID: " + songId);
           // console.log(mainResponseArray[i]);
           // console.log(title);
           // console.log(image);
@@ -72,12 +74,10 @@ $(document).ready(function(){
               console.log("there are lyrics :)");
             }
 
-             console.log("Here are the lyrics for", songId, lyricsResponse.lyrics );
-             lyrics = lyricsResponse.lyrics;
+             console.log("Here are the lyrics for", songId);
+            lyrics = lyricsResponse.lyrics;
             lyricalContent.text(lyrics);
 
-
-             
           });
 
 
@@ -89,7 +89,14 @@ $(document).ready(function(){
           title.text(songTitle);
           mainContentDiv.append(title);
           mainContentDiv.append(image);
-          mainContentDiv.append(lyricalContent);
+
+          var requestsng = "#" + songId; 
+
+          console.log(requestsng);
+
+          $("#" + songId).append(lyricalContent); 
+
+          //mainContentDiv.append(lyricalContent);
 
           $("#song-results").prepend(mainContentDiv);
 
