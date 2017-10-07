@@ -41,14 +41,11 @@ $(document).ready(function(){
         mainResponseArray = mainResponse.response.hits;
 
         for (i = 0; i < mainResponseArray.length; i++) { 
-          var mainContentDiv = $("<div>").addClass("container mainContent");
-          var title = $("<h2>");
-          var image = $("<img>");
-          var lyricalContent = $("<p>");
-          var songId = mainResponseArray[i].result.id;
+          var songId = mainResponseArray[i].result.id;          
+          console.log(songId);
+          getLyrics(songId);
           var imageThumbnail = mainResponseArray[i].result.header_image_thumbnail_url;
           var songTitle = mainResponseArray[i].result.title;
-          var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
 
           // console.log(mainResponseArray[i]);
           // console.log(title);
@@ -58,6 +55,10 @@ $(document).ready(function(){
           // console.log(imageThumbnail);
           // console.log(songTitle);
           // console.log(lyricsURL);
+
+          function getLyrics(songId){
+
+          var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
 
           $.ajax({
             url: lyricsURL,
@@ -72,13 +73,16 @@ $(document).ready(function(){
               console.log("there are lyrics :)");
             }
 
-             console.log("Here are the lyrics for", songId, lyricsResponse.lyrics );
-             lyrics = lyricsResponse.lyrics;
-            lyricalContent.text(lyrics);
+             console.log("Here are the lyrics for", songId, lyricsResponse.lyrics.slice(0,150));
 
 
-             
-          });
+          var title = $("<h2>");
+          var image = $("<img>");
+          var lyricalContent = $("<p>");
+          var mainContentDiv = $("<div>").addClass("container mainContent");
+          mainContentDiv.attr("id", songId);
+          lyrics = lyricsResponse.lyrics;
+          lyricalContent.text(lyrics);
 
 
 
@@ -92,6 +96,14 @@ $(document).ready(function(){
           mainContentDiv.append(lyricalContent);
 
           $("#song-results").prepend(mainContentDiv);
+
+
+
+             
+          });
+        }
+
+
 
 
       }
