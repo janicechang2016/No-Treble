@@ -15,9 +15,7 @@ console.log("javascript working!");
   firebase.initializeApp(config);
 
   var database = firebase.database();
-  var queryURL;
-  var lyrics;
-  var searchField;
+  var lyricsObject = {};
 
 
 
@@ -25,7 +23,7 @@ $(document).ready(function(){
 
   $("#search-button").on("click", function(){
 
-    searchField = $("#lyrics").val().trim();
+    var searchField = $("#lyrics").val().trim();
 
     if (!localStorage.searches){
 
@@ -54,7 +52,7 @@ $(document).ready(function(){
 
     var query = searchField.split(" ").join("%20");
 
-    queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + query;
+    var queryURL = "https://rutgers-genius-proxy.herokuapp.com/search?q=" + query;
 
     // console.log(queryURL);
 
@@ -66,6 +64,7 @@ $(document).ready(function(){
         // console.log(mainResponse)
 
         mainResponseArray = mainResponse.response.hits;
+        // console.log(mainResponseArray);
 
         for (i = 0; i < mainResponseArray.length; i++) { 
           var songId = mainResponseArray[i].result.id;          
@@ -104,8 +103,9 @@ $(document).ready(function(){
           var lyricalContent = $("<p>");
           var mainContentDiv = $("<div>").addClass("container mainContent");
           mainContentDiv.attr("id", songId);
-          lyrics = lyricsResponse.lyrics;
+          var lyrics = lyricsResponse.lyrics;
           lyricalContent.text(lyrics);
+          lyricsObject[songId] = lyrics;
 
 
 
