@@ -29,13 +29,13 @@ $(document).ready(function(){
     localStorage.setItem('searches', 1);
     var searchList = {"search#1": searchField }
     localStorage.setItem('searchList',  JSON.stringify(searchList));
-    console.log("There is now local Storage");
+    console.log("There is now local storage");
     retrievedObject = localStorage.getItem('searchList');
     console.log("Here is the object in local storage with search history",retrievedObject)
   } else{
 
 
-    console.log("There is pre-existing localStorage");
+    console.log("There is pre-existing local storage");
     var counter = localStorage.getItem('searches');
     counter++;
     var localObject = JSON.parse(localStorage.getItem('searchList'));
@@ -127,7 +127,7 @@ $(document).ready(function(){
       }
     });   
 
-      console.log(lyricsObject);
+      console.log("Here is the lyrics object: ", lyricsObject);
 
   
 
