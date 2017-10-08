@@ -1,7 +1,7 @@
 
 
 
-console.log("javascript working!");
+console.log("javascript file working!");
 
 //Initialize Firebase
   var config = {
@@ -16,8 +16,6 @@ console.log("javascript working!");
 
   var database = firebase.database();
   var lyricsObject = {};
-
-
 
 $(document).ready(function(){
 
@@ -70,10 +68,11 @@ $(document).ready(function(){
           var songId = mainResponseArray[i].result.id;          
           var imageThumbnail = mainResponseArray[i].result.header_image_thumbnail_url;
           var songTitle = mainResponseArray[i].result.title;
-          getLyrics(songId, imageThumbnail, songTitle);
+          var popularity = mainResponseArray[i].result.stats.pageviews;
+          getLyrics(songId, imageThumbnail, songTitle, popularity);
 
 
-          function getLyrics(songId, imageThumbnail, songTitle ){
+          function getLyrics(songId, imageThumbnail, songTitle, popularity){
             // console.log(imageThumbnail);
             // console.log(songTitle);
             // console.log(songId);
@@ -87,15 +86,15 @@ $(document).ready(function(){
             method: "GET"
           }).done(function(lyricsResponse){
 
-            if (!lyricsResponse.lyrics){
-              console.log("There are no lyrics for songID#", songId, " :(");
+            // if (!lyricsResponse.lyrics){
+            //   console.log("There are no lyrics for songID#", songId, " :(");
 
 
-            } else{
-              console.log("There are lyrics for songID#", songId ," :)");
-            }
+            // } else{
+            //   console.log("There are lyrics for songID#", songId ," :)");
+            // }
 
-             console.log("Here are the lyrics for songId#", songId, songTitle, lyricsResponse.lyrics.slice(0,150));
+            //  console.log("Here are the lyrics for songId#", songId, songTitle, lyricsResponse.lyrics.slice(0,150));
 
 
           var title = $("<h2>");
@@ -105,7 +104,7 @@ $(document).ready(function(){
           mainContentDiv.attr("id", songId);
           var lyrics = lyricsResponse.lyrics;
           lyricalContent.text(lyrics);
-          lyricsObject[songId] = lyrics;
+          lyricsObject[songId] = [songTitle, popularity, lyrics];
 
 
 
@@ -118,12 +117,7 @@ $(document).ready(function(){
           mainContentDiv.append(title);
           mainContentDiv.append(image);
           mainContentDiv.append(lyricalContent);
-
           $("#song-results").prepend(mainContentDiv);
-
-
-
-
 
              
           });
@@ -131,12 +125,16 @@ $(document).ready(function(){
 
 
       }
-    })
+    });   
+
+      console.log(lyricsObject);
+
+  
 
 
       });
 
-  
+
 
 
   });
