@@ -9,6 +9,12 @@
 	
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<style>
+	.highlight
+	{
+	background-color:yellow;
+	}
+</style>
 </head>
 <body>
 <div id="page-wrap">
@@ -23,7 +29,7 @@
 		<div class="container" id="lyrics-container">
 			<div class="row">
 				<div class="col-md-10">
-					<input class="form-control" id="lyrics" placeholder="Enter your lyrics here!">
+					<input class="form-control" id="lyrics" placeholder="Enter Song name or artist">
 				</div>	
 
 				<div class="col-md-2" >			
@@ -55,7 +61,9 @@
 
 		<div class="row" >
 			<div class="col-md-12">
-				<button type="submit" class="btn btn-success active" id="similarity-percentage-button" >Compare Lyrics</button>
+				<textarea class="form-control" rows="10" placeholder="Enter your lyrics here!" id="userlyrics"></textarea>
+				<br>
+				<button type="submit" class="btn btn-success active" id="compare-button"  >Compare Lyrics</button>
 			</div>
 			
 		</div>
@@ -72,26 +80,3 @@
 </div>
 </body>
 </html>
-
-
-<!--
-pseudocode for js here
-1. on click, pull up ten songs (alphabetical, popularity, etc.)
-	make call to Genius API to get LYRICS (or musixmatch API?)
-	this will display the similar lyrics highlighted 
-
-2. pull the corresponding song via YT or Spotify
-	make call to Spotify/YouTube
-	this will display the album cover/YT video, name and artist of the song, year the song was made, and copyright information
-	if possible, use marquee effect for the song title/artist/year
-
-3. make calls to APIs
-
-4. concentrate on getting results back first
-
-5. compare/percentage button
-	user needs to input as much of their lyrics as possible (specify to user five or more words)
-	remove doubles of words so only unique words are left
-
-6. dynamically creating divs
--->
