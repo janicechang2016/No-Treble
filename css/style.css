@@ -32,6 +32,10 @@ body {
 
 }
 
+.compareMatch{
+	background-color : yellow;
+}
+
 p:hover{
 	
 }
