@@ -147,23 +147,38 @@ $("#compare-button").on("click", function(event){
 
 
 
-// variables for user's lyrics
-  var userLyrics = $("#userLyrics").val().trim();
+  // variables for user's lyrics
+  var userLyrics = $("#userLyrics").val().toLowerCase().trim();
   var userLyricsArray = userLyrics.split(" ");
-  
-
   var lyricsOnPage = $(".mainContent");
+  
   for (i = 0; i< userLyricsArray.length; i++){
 
     
     for (j = 0; j < lyricsOnPage.length; j++){
-      var song = lyricsOnPage[i].textContent;
-      var songArray = song.slice(0,300).split(" ");
-// add span class with highlight feature in CSS
-      console.log("Word in user's song: ", userLyricsArray[i]);
-      console.log("Word in page's song: ", songArray[j]);
+        // variables for page lyrics
+        var song = lyricsOnPage[j].textContent.toLowerCase();
+    
 
-      if ( )
+      var songArray = song.slice(0,300).split(" ");
+
+
+      for (k = 0; k < songArray.length; k++){
+      console.log("Word in user's song: ", userLyricsArray[i]);
+      console.log("Word in page's song: ", songArray[k]);
+
+      if (userLyricsArray[i] == songArray[k] ){
+        console.log("MATCH!")
+        // add span class with highlight feature in CSS
+        // userLyricsArray[i].replace(userLyricsArray[i])
+
+
+      } 
+      // else{
+      //   console.log("not a match.")
+      // }
+
+      }
 
 
 
