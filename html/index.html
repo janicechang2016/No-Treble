@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>No Treble</title>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
@@ -44,29 +46,28 @@
 	<br><br><br>
 
 
-	<div class="container" id="song-results">
-		<div class="row">
-			<div class="col-md-6" id="album-cover-image">
-				Album Image and song player will go here
-			</div>
 
-			<div class="col-md-6" id="results-lyrics">
-				Lyrics will go here
-			</div>
-		</div>
-
-
-		<br><br><br>
 
 
 		<div class="row" >
 			<div class="col-md-12">
-				<textarea class="form-control" rows="10" placeholder="Enter your lyrics here!" id="userlyrics"></textarea>
+				<textarea class="form-control" rows="10" placeholder="Enter your lyrics here!" id="userLyrics"></textarea>
 				<br>
 				<button type="submit" class="btn btn-success active" id="compare-button"  >Compare Lyrics</button>
 			</div>
 			
 		</div>
+
+			<div class="container" id="song-results">
+		<div class="row">
+
+			<div class="col-md-12" id="lyrics-results">
+
+			</div>
+		</div>
+
+
+		<br><br><br>
 		
 	</div>
 

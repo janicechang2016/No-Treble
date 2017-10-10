@@ -43,7 +43,7 @@ $(document).ready(function(){
     localObject[searchKey] = searchField;
     localStorage.setItem('searchList', JSON.stringify(localObject));
     console.log("new search: ", searchField)
-    console.log("Updated search list ", localObject);
+    console.log("Updated search list: ", localObject);
     localStorage.setItem('searches', counter)
 
   }
@@ -62,7 +62,7 @@ $(document).ready(function(){
         // console.log(mainResponse)
 
         mainResponseArray = mainResponse.response.hits;
-        // console.log(mainResponseArray);
+        console.log(mainResponseArray);
 
         for (i = 0; i < mainResponseArray.length; i++) { 
           var songId = mainResponseArray[i].result.id;          
@@ -117,7 +117,7 @@ $(document).ready(function(){
           mainContentDiv.append(title);
           mainContentDiv.append(image);
           mainContentDiv.append(lyricalContent);
-          $("#song-results").prepend(mainContentDiv);
+          $("#lyrics-results").prepend(mainContentDiv);
 
              
           });
@@ -131,10 +131,37 @@ $(document).ready(function(){
 
   
 
-
       });
 
 
+$("#compare-button").on("click", function(event){
+  event.preventDefault();
+
+  // // FIGURE OUT PROMPT FOR COMPARE BREFORE RESULTS
+  // if (!$("#lyrics-results") == ""){
+
+  //   swal("Search for an artist/song before you compare.");;
+
+  // }else{
+
+
+
+  lyricsOnPageArray = $(".mainContent.p")
+
+
+
+// variables for user's lyrics
+  userLyrics = $("#userLyrics").val().trim();
+  userLyricsArray = userLyrics.split(" ");
+
+  for (i = 0; i< userLyricsArray.length; i++){
+    console.log("Word in user's song: ", userLyricsArray[i]);
+
+  }
+
+  }
+
+})
 
 
   });
@@ -142,6 +169,9 @@ $(document).ready(function(){
 
 
 
+
+lastFMAPIkey =  'b9abe3aa8c5870ad9ae952d6b8945b57'
+lastFMSharedsecret = '2ac3fd2fc4d4ef9f422fce2935819376'
 
 
 
