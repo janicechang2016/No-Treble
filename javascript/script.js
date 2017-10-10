@@ -162,6 +162,7 @@ $("#compare-button").on("click", function(event){
       console.log(lyricsOnPage);
       var song = lyricsOnPage[j].textContent.toLowerCase();    
       var songArray = song.slice(0,300).split(" ");
+      console.log(songArray);
 
       for (k = 0; k <= songArray.length; k++){
       console.log("Word in user's song: ", userLyricsArray[i]);
@@ -169,11 +170,12 @@ $("#compare-button").on("click", function(event){
 
       if (k == songArray.length){
         console.log("Checked every word in the song: ");
+
+
+        // song array should have items joined and added to the page rendered as html
+
         newSongArray = song.join()
         lyricsOnPage[j].innerHTML.html(song);
-
-        // lyricsOnPage[j].
-        // $(songArray
 
       }
 
