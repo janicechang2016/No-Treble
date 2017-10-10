@@ -159,7 +159,7 @@ $("#compare-button").on("click", function(event){
 
   }
 
-  }
+  
 
 })
 
