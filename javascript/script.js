@@ -137,7 +137,8 @@ $(document).ready(function(){
 $("#compare-button").on("click", function(event){
   event.preventDefault();
 
-  // // FIGURE OUT PROMPT FOR COMPARE BREFORE RESULTS
+  // // PROMPT IF  COMPARE BUTTON IS PRESSED BEFORE A SEARCH
+
   // if (!$("#lyrics-results") == ""){
 
   //   swal("Search for an artist/song before you compare.");;
@@ -145,19 +146,27 @@ $("#compare-button").on("click", function(event){
   // }else{
 
 
+  var lyricsOnPage = $(".mainContent");
 
-  lyricsOnPageArray = $(".mainContent.p")
+  console.log(lyricsOnPage.length);
 
+for (i = 0; i < lyricsOnPage.length; i++){
 
+  var lyricsOnPageArray = lyricsOnPage[i].textContent.split(" ");
 
 // variables for user's lyrics
   userLyrics = $("#userLyrics").val().trim();
+
+   
+
   userLyricsArray = userLyrics.split(" ");
 
-  for (i = 0; i< userLyricsArray.length; i++){
+  for (j = 0; j< userLyricsArray.length; j++){
+    console.log(lyricsOnPageArray);
     console.log("Word in user's song: ", userLyricsArray[i]);
 
   }
+}
 
   
 
