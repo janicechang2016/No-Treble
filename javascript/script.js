@@ -162,26 +162,34 @@ $("#compare-button").on("click", function(event){
       console.log(lyricsOnPage);
       var song = lyricsOnPage[j].textContent.toLowerCase();    
       var songArray = song.slice(0,300).split(" ");
+
+   
       console.log(songArray);
 
       for (k = 0; k <= songArray.length; k++){
-      console.log("Word in user's song: ", userLyricsArray[i]);
-      console.log("Word in page's song: ", songArray[k]);
+
 
       if (k == songArray.length){
         console.log("Checked every word in the song: ");
 
 
         // song array should have items joined and added to the page rendered as html
+        console.log("Here is the song array with span tags on matched words: ", songArray)
 
-        lyricsOnPage[j].innerHTML.html(song.join(""));
+          songArray.join();
+          console.log(songArray)
+
+          return;
 
       }
 
       if (userLyricsArray[i] == songArray[k] ){
       console.log("MATCH!")
+      console.log("Word in user's song: ", userLyricsArray[i]);
+      console.log("Word in page's song: ", songArray[k]);
 
        songArray[k]= '<span class= "compareMatch">' +songArray[k]+'</span>'
+       console.log(songArray)
 
        // lyricsOnPage[j].html()
 
