@@ -174,8 +174,7 @@ $("#compare-button").on("click", function(event){
 
         // song array should have items joined and added to the page rendered as html
 
-        newSongArray = song.join()
-        lyricsOnPage[j].innerHTML.html(song);
+        lyricsOnPage[j].innerHTML.html(song.join(""));
 
       }
 
