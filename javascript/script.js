@@ -210,7 +210,7 @@ $(document).ready(function() {
         var songWithSpanTags = songArray.join(" ");
         console.log(songWithSpanTags);
 
-        $(".mainContent #songId").html(songWithSpanTags);
+      $("#"+songId).html(songWithSpanTags);
 
 
 
