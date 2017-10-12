@@ -137,11 +137,20 @@ $(document).ready(function() {
 
     // // PROMPT IF  COMPARE BUTTON IS PRESSED BEFORE A SEARCH
 
-    // if (!$("#lyrics-results") == ""){
+    if ($("#lyrics-results")[0].innerText == ""){
 
-    //   swal("Search for an artist/song before you compare.");;
+      // console.log();
 
-    // }else{
+      swal({
+        type: "info",
+        title: "...Wait a second!",
+        text: "Search for an artist/song before you compare",
+        confirmButtonText: "Got it!",
+        confirmButtonColor: '#00b300',
+      });
+      return;
+    }
+
 
 
 
@@ -224,8 +233,7 @@ $(document).ready(function() {
             image.attr("length", "auto");
             image.css("float", "left");
             mainContentDivWithSongId.prepend(image);
-            mainContentDivWithSongId.prepend(title);
-
+     
 
 
 
