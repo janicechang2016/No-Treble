@@ -8,7 +8,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
 	<link href="https://fonts.googleapis.com/css?family=Audiowide|Monoton" rel="stylesheet">
-	
+
+
+	<link href="https://cdn.quilljs.com/1.3.3/quill.snow.css" rel="stylesheet">
+	<script src="https://cdn.quilljs.com/1.3.3/quill.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -45,8 +49,8 @@
 
 
 		<div class="row" >
-			<div class="col-md-12">
-				<textarea class="form-control" rows="10" placeholder="Enter your lyrics here!" id="userLyrics"></textarea>
+			<div class="col-md-12 ">
+				<textarea class="form-control editor" rows="10" placeholder="Enter your lyrics here!"  id="userLyrics" ></textarea>
 				<br>
 				<button type="submit" class="btn btn-success active" id="compare-button"  >Compare Lyrics</button>
 			</div>
@@ -67,12 +71,21 @@
 	</div>
 
 
+<!-- Initialize Quill editor -->
+<script>
 
+  var quill = new Quill('.editor', {
+  	theme: "snow"
+});
+</script>
 
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 	<script type="text/javascript" src="javascript/script.js"></script>
+
+
+
 </div>
 </body>
 </html>

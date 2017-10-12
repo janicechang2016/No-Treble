@@ -145,7 +145,8 @@ $(document).ready(function() {
         type: "info",
         title: "...Wait a second!",
         text: "Search for an artist/song before you compare",
-        confirmButtonText: "Got it!",
+        confirmButtonText:'<i class="fa fa-thumbs-up"></i> Great!',
+        confirmButtonAriaLabel: 'Thumbs up, Got it!',
         confirmButtonColor: '#00b300',
       });
       return;

@@ -36,6 +36,10 @@ body {
 	background-color : yellow;
 }
 
+#lyrics-results{
+
+	margin-top: 100px;
+}
 p:hover{
 	
 }
