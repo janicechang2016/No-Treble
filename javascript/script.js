@@ -103,7 +103,7 @@ $(document).ready(function() {
             mainContentDiv.attr("id", songId);
             var lyrics = lyricsResponse.lyrics;
             lyricalContent.text(lyrics);
-            lyricsObject[songId] = [songTitle, popularity, lyrics];
+            lyricsObject[songId] = [songTitle, popularity, lyrics, imageThumbnail];
 
 
 
@@ -150,24 +150,21 @@ $(document).ready(function() {
     var userLyricsArray = userLyrics.split(" ");
     var lyricsOnPage = $(".mainContent");
 
-    // loop for every word in user's song
 
-    for (i = 0; i < userLyricsArray.length; i++) {
-      console.log("Word in user's song: ", userLyricsArray[i]);
 
       // loop for every song on the page
 
-      for (j = 0; j < lyricsOnPage.length; j++) {
+    for (j = 0; j < lyricsOnPage.length; j++) {
+
+      // variables to grab lyrics from page and create an array of words
+      var song = lyricsOnPage[j].textContent;
+      var songArray = song.split(" ");
+
+    // loop for every word in user's song
+
+    for (i = 0; i < userLyricsArray.length; i++) {
 
 
-
-        // variables for page lyrics created
-        // console.log(lyricsOnPage);
-        var song = lyricsOnPage[j].textContent;
-        var songArray = song.slice(0, 300).split(" ");
-
-
-        // console.log(songArray);
 
         // loop for every word in the song 
 
@@ -184,24 +181,18 @@ $(document).ready(function() {
 
 
             songArray[k] = '<span class= "compareMatch">' + songArray[k] + '</span>';
-            console.log(songArray[k], "changed to add class")
-
-            // lyricsOnPage[j].html()
-
-
-
-            // add span class with highlight feature in CSS
-            // userLyricsArray[i].replace(userLyricsArray[i])
+            console.log(songArray[k], "changed to add class");
 
 
           } else {
-            console.log("not a match.")
+            // console.log("not a match.")
           }
 
         }
+      }
 
         var songId = lyricsOnPage[j].id;
-        console.log("Checked every word in the song ", songId);
+        console.log("Checked every word in the song ", lyricsObject[songId][0]);
 
 
         // song array should have items joined and added to the page rendered as html
@@ -210,11 +201,33 @@ $(document).ready(function() {
         var songWithSpanTags = songArray.join(" ");
         console.log(songWithSpanTags);
 
-      $("#"+songId).html(songWithSpanTags);
+        lyricsObject[songId].songWithSpanTags = songWithSpanTags;
+        // console.log(lyricsObject[songId].songWithSpanTags);
+        console.log(lyricsObject);
+
+      console.log($("#"+ songId));
+
+      var mainContentDivWithSongId = $("#"+ songId);
+      
+      mainContentDivWithSongId[0].innerHTML=  lyricsObject[songId].songWithSpanTags;
+
+
+            var image = $("<img>");
+            var title = $("<h2>");
+            console.log(lyricsObject[songId][3])
+            var imageThumbnail = lyricsObject[songId][3];
+
+            image.attr("src", imageThumbnail);
+            image.attr("height", "250px");
+            image.attr("length", "auto");
+            image.css("float", "left");
+            mainContentDivWithSongId.prepend(image);
+            mainContentDivWithSongId.prepend(title);
 
 
 
-      }
+
+
     }
 
   })
