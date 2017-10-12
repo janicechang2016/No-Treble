@@ -214,8 +214,10 @@ $(document).ready(function() {
 
             var image = $("<img>");
             var title = $("<h2>");
-            console.log(lyricsObject[songId][3])
+            console.log(lyricsObject[songId][3]);
             var imageThumbnail = lyricsObject[songId][3];
+
+            title.text(lyricsObject[songId][0]);
 
             image.attr("src", imageThumbnail);
             image.attr("height", "250px");
