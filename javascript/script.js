@@ -162,12 +162,12 @@ $(document).ready(function() {
 
 
         // variables for page lyrics created
-        console.log(lyricsOnPage);
+        // console.log(lyricsOnPage);
         var song = lyricsOnPage[j].textContent;
         var songArray = song.slice(0, 300).split(" ");
 
 
-        console.log(songArray);
+        // console.log(songArray);
 
         // loop for every word in the song 
 
@@ -183,7 +183,7 @@ $(document).ready(function() {
             console.log("MATCH!")
 
 
-            songArray[k] = '<span class= "compareMatch">' + songArray[k] + '</span>'
+            songArray[k] = '<span class= "compareMatch">' + songArray[k] + '</span>';
             console.log(songArray[k], "changed to add class")
 
             // lyricsOnPage[j].html()
@@ -209,6 +209,8 @@ $(document).ready(function() {
 
         var songWithSpanTags = songArray.join(" ");
         console.log(songWithSpanTags);
+
+        $(".mainContent #songId").html(songWithSpanTags);
 
 
 
