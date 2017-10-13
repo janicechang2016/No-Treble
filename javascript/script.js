@@ -28,13 +28,13 @@ $(document).ready(function() {
         "search#1": searchField
       }
       localStorage.setItem('searchList', JSON.stringify(searchList));
-      console.log("There is now local storage");
+      // console.log("There is now local storage");
       retrievedObject = localStorage.getItem('searchList');
-      console.log("Here is the object in local storage with search history", retrievedObject)
+      // console.log("Here is the object in local storage with search history", retrievedObject)
     } else {
 
 
-      console.log("There is pre-existing local storage");
+      // console.log("There is pre-existing local storage");
       var counter = localStorage.getItem('searches');
       counter++;
       var localObject = JSON.parse(localStorage.getItem('searchList'));
@@ -42,7 +42,7 @@ $(document).ready(function() {
       localObject[searchKey] = searchField;
       localStorage.setItem('searchList', JSON.stringify(localObject));
       console.log("new search: ", searchField)
-      console.log("Updated search list: ", localObject);
+      // console.log("Updated search list: ", localObject);
       localStorage.setItem('searches', counter)
 
     }
@@ -61,7 +61,7 @@ $(document).ready(function() {
       // console.log(mainResponse)
 
       mainResponseArray = mainResponse.response.hits;
-      console.log(mainResponseArray);
+      // console.log(mainResponseArray);
 
       for (i = 0; i < mainResponseArray.length; i++) {
         var songId = mainResponseArray[i].result.id;
@@ -125,7 +125,7 @@ $(document).ready(function() {
       }
     });
 
-    console.log("Here is the lyrics object: ", lyricsObject);
+    // console.log("Here is the lyrics object: ", lyricsObject);
 
 
 
@@ -166,8 +166,14 @@ $(document).ready(function() {
 
     for (j = 0; j < lyricsOnPage.length; j++) {
 
-      // variables to grab lyrics from page and create an array of words
-      var song = lyricsOnPage[j].textContent;
+      var songId = lyricsOnPage[j].id;
+
+      // variables to grab lyrics from page and create an array of words **NOTE THIS STRIPS THE h2 TAGS FROM SONG NAME SO SLICE IS ADDED TO REMOVE THE SONG NAME IT IS ADDED BACK LATER IN THE LOOP WITH h2 TAGS
+      var song = lyricsOnPage[j].textContent.slice( (lyricsObject[songId][0].length),);
+
+      console.log("Here is the mainContent div",lyricsOnPage[j]);
+
+
       var songArray = song.split(" ");
 
     // loop for every word in user's song
@@ -183,15 +189,15 @@ $(document).ready(function() {
 
 
           if (userLyricsArray[i].toLowerCase() == songArray[k].toLowerCase()) {
-            console.log("Word in user's song: ", userLyricsArray[i]);
-            console.log("Word in page's song: ", songArray[k]);
+            // console.log("Word in user's song: ", userLyricsArray[i]);
+            // console.log("Word in page's song: ", songArray[k]);
 
 
-            console.log("MATCH!")
+            // console.log("MATCH!")
 
 
             songArray[k] = '<span class= "compareMatch">' + songArray[k] + '</span>';
-            console.log(songArray[k], "changed to add class");
+            // console.log(songArray[k], "changed to add class");
 
 
           } else {
@@ -201,19 +207,19 @@ $(document).ready(function() {
         }
       }
 
-        var songId = lyricsOnPage[j].id;
+        
         console.log("Checked every word in the song ", lyricsObject[songId][0]);
 
 
         // song array should have items joined and added to the page rendered as html
-        console.log("Here is the song array with span tags on matched words: ", songArray)
+        // console.log("Here is the song array with span tags on matched words: ", songArray)
 
         var songWithSpanTags = songArray.join(" ");
-        console.log(songWithSpanTags);
+        // console.log(songWithSpanTags);
 
         lyricsObject[songId].songWithSpanTags = songWithSpanTags;
         // console.log(lyricsObject[songId].songWithSpanTags);
-        console.log(lyricsObject);
+        // console.log(lyricsObject);
 
       console.log($("#"+ songId));
 
@@ -234,7 +240,7 @@ $(document).ready(function() {
             image.attr("length", "auto");
             image.css("float", "left");
             mainContentDivWithSongId.prepend(image);
-     
+            mainContentDivWithSongId.prepend(title);
 
 
 
