@@ -59,6 +59,11 @@ body {
 		border-radius: 5px;
 }
 
+.ql-editor{
+	background-color: white;
+
+}
+
 button{
 	font-family: 'Audiowide', cursive;
 }
