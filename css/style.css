@@ -68,6 +68,12 @@ button{
 	font-family: 'Audiowide', cursive;
 }
 
+@media screen and (max-width: 767px) {
+	#search-button{
+		margin-top: 25px;
+		}
+	}
+
 h2{
 	font-weight: 50px;
 	font-size: 25px;
