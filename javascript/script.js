@@ -16,6 +16,8 @@ var lyricsObject = {};
 
 $(document).ready(function() {
 
+  ($(".ql-editor")).addClass("userLyrics");
+
   $("#search-button").on("click", function() {
 
     var searchField = $("#lyrics").val().trim();
@@ -156,7 +158,12 @@ $(document).ready(function() {
 
 
     // variables for user's lyrics
-    var userLyrics = $("#userLyrics").val().trim();
+    // var userLyrics = $(".userLyrics").val().trim();
+    // console.log(userLyrics)
+
+    var userLyrics = quill.getText(0, );
+
+    console.log(userLyrics)
     var userLyricsArray = userLyrics.split(" ");
     var lyricsOnPage = $(".mainContent");
 
