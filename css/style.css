@@ -36,9 +36,16 @@ body {
 	background-color : yellow;
 }
 
-#lyrics-results{
+#compare-button{
+	margin-top: 25px;
+	margin-bottom: 100px;
 
+}
+
+#lyrics-results{
 	margin-top: 100px;
+
+
 }
 
 #editor{
