@@ -57,9 +57,10 @@ button{
 }
 
 h2{
-	font-weight: 40px;
+	font-weight: 50px;
 	font-size: 25px;
 	margin-top: 20px;
+	margin-bottom: 5px;
 }
 
 p:hover{
