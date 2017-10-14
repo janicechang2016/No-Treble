@@ -1,17 +1,80 @@
 console.log("javascript file working!");
 
-//Initialize Firebase
-var config = {
-  apiKey: "AIzaSyBQUeN0tOnqjLjpR3M1W15VAx1XZd8sq8U",
-  authDomain: "no-treble.firebaseapp.com",
-  databaseURL: "https://no-treble.firebaseio.com",
-  projectId: "no-treble",
-  storageBucket: "no-treble.appspot.com",
-  messagingSenderId: "107363991076"
-};
-firebase.initializeApp(config);
+//Function definition
+function getLyrics(songId, imageThumbnail, songTitle, popularity, callback) {
+          
+          var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
 
-var database = firebase.database();
+          $.ajax({
+            url: lyricsURL,
+            method: "GET"
+          }).done(function(lyricsResponse) {
+
+            var title = $("<h2>");
+            var image = $("<img>");
+            var formatspace = $("<br>");
+            var formatline = $("<hr>");
+            var lyricalContent = $("<p>");
+            var mainContentDiv = $("<div>").addClass("container mainContent");
+            mainContentDiv.attr("id", songId);
+            var lyrics = lyricsResponse.lyrics;
+            lyricalContent.text(lyrics);
+            lyricsObject[songId] = [songTitle, popularity, lyrics, imageThumbnail];
+
+
+            formatline.css("width", "55%");
+            formatline.css("background-color", "green");
+            image.attr("src", imageThumbnail);
+            image.attr("height", "250px");
+            image.attr("length", "auto");
+            image.css("float", "left");
+            title.text(songTitle);
+            mainContentDiv.append(title);
+            mainContentDiv.append(image);
+            mainContentDiv.append(lyricalContent);
+            mainContentDiv.append(formatspace);
+            mainContentDiv.append(formatline);
+            $("#lyrics-results").prepend(mainContentDiv);
+
+            //function call of getvid
+            callback(songTitle, songId);
+
+          });
+        }
+
+
+//Function Definition
+function getvid(full_title, songId){
+          var ytapikey = "AIzaSyDdtikdTgNqWJLUg1kHAd_W3V2SyG90pzs";
+
+          console.log(full_title);
+          var ytqueryurl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + full_title + "&type=video&fields=items%2Fid%2FvideoId&key=" + ytapikey;
+
+          $.ajax({
+            url: ytqueryurl,
+            method: "GET"
+          }).done(function(ytvidresponse){
+
+              var iframe = $("<iframe>").attr({"id": "player", "width": "500", "height": "350", "frameborder": "0"});
+              var formatspace = $("<br>");
+              var formatline = $("<hr>");
+              var ytvid_id = ytvidresponse.items[0].id.videoId;
+              console.log("ytvid_id: " + ytvid_id);
+              console.log("full_title: " + full_title);
+
+              var src = 'https://www.youtube.com/embed/' + ytvid_id;
+
+              formatline.css("width", "55%");
+              formatline.css("background-color", "green");
+              iframe.attr("src", src);
+            
+              $("#" + songId).append(iframe);
+              $("#" + songId).append(formatspace);
+              $("#" + songId).append(formatline);
+              $("#" + songId).append(formatspace);
+          });
+        }
+
 var lyricsObject = {};
 
 $(document).ready(function() {
@@ -70,59 +133,8 @@ $(document).ready(function() {
         var imageThumbnail = mainResponseArray[i].result.header_image_thumbnail_url;
         var songTitle = mainResponseArray[i].result.title;
         var popularity = mainResponseArray[i].result.stats.pageviews;
-        getLyrics(songId, imageThumbnail, songTitle, popularity);
-
-
-        function getLyrics(songId, imageThumbnail, songTitle, popularity) {
-          // console.log(imageThumbnail);
-          // console.log(songTitle);
-          // console.log(songId);
-
-
-
-          var lyricsURL = "https://rutgers-genius-proxy.herokuapp.com/lyrics/" + songId;
-
-          $.ajax({
-            url: lyricsURL,
-            method: "GET"
-          }).done(function(lyricsResponse) {
-
-            // if (!lyricsResponse.lyrics){
-            //   console.log("There are no lyrics for songID#", songId, " :(");
-
-
-            // } else{
-            //   console.log("There are lyrics for songID#", songId ," :)");
-            // }
-
-            //  console.log("Here are the lyrics for songId#", songId, songTitle, lyricsResponse.lyrics.slice(0,150));
-
-
-            var title = $("<h2>");
-            var image = $("<img>");
-            var lyricalContent = $("<p>");
-            var mainContentDiv = $("<div>").addClass("container mainContent");
-            mainContentDiv.attr("id", songId);
-            var lyrics = lyricsResponse.lyrics;
-            lyricalContent.text(lyrics);
-            lyricsObject[songId] = [songTitle, popularity, lyrics, imageThumbnail];
-
-
-
-            image.attr("src", imageThumbnail);
-            image.attr("height", "250px");
-            image.attr("length", "auto");
-            image.css("float", "left");
-            title.text(songTitle);
-            mainContentDiv.append(title);
-            mainContentDiv.append(image);
-            mainContentDiv.append(lyricalContent);
-            $("#lyrics-results").prepend(mainContentDiv);
-
-
-          });
-        }
-
+        
+        getLyrics(songId, imageThumbnail, songTitle, popularity, getvid);
 
       }
     });
@@ -136,6 +148,7 @@ $(document).ready(function() {
 
   $("#compare-button").on("click", function(event) {
     event.preventDefault();
+    console.log("compare button working!")
 
     // // PROMPT IF  COMPARE BUTTON IS PRESSED BEFORE A SEARCH
 

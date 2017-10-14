@@ -80,7 +80,7 @@
 
 <!-- Initialize Quill editor -->
 <script>
-	
+
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
   ['blockquote', 'code-block'],
@@ -102,14 +102,15 @@ var toolbarOptions = [
 ];
 
 
-  var quill = new Quill('.editor',  {
+
+
+  var quill = new Quill('.editor', {
   	modules: {
     toolbar: toolbarOptions
   }, 
-
   	theme: "snow",
-  	placeholder: "Write your lyrics here...",
-
+  	placeholder: "Write your lyrics here..."
+  
 });
 </script>
 
