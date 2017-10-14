@@ -12,8 +12,8 @@ function getLyrics(songId, imageThumbnail, songTitle, popularity, callback) {
 
             var title = $("<h2>");
             var image = $("<img>");
-            var formatspace = $("<br>");
-            var formatline = $("<hr>");
+            // var formatspace = $("<br>");
+            // var formatline = $("<hr>");
             var lyricalContent = $("<p>");
             var mainContentDiv = $("<div>").addClass("container mainContent");
             mainContentDiv.attr("id", songId);
@@ -22,8 +22,8 @@ function getLyrics(songId, imageThumbnail, songTitle, popularity, callback) {
             lyricsObject[songId] = [songTitle, popularity, lyrics, imageThumbnail];
 
 
-            formatline.css("width", "55%");
-            formatline.css("background-color", "green");
+            // formatline.css("width", "55%");
+            // formatline.css("background-color", "green");
             image.attr("src", imageThumbnail);
             image.attr("height", "250px");
             image.attr("length", "auto");
@@ -32,8 +32,8 @@ function getLyrics(songId, imageThumbnail, songTitle, popularity, callback) {
             mainContentDiv.append(title);
             mainContentDiv.append(image);
             mainContentDiv.append(lyricalContent);
-            mainContentDiv.append(formatspace);
-            mainContentDiv.append(formatline);
+            // mainContentDiv.append(formatspace);
+            // mainContentDiv.append(formatline);
             $("#lyrics-results").prepend(mainContentDiv);
 
             //function call of getvid
@@ -56,24 +56,25 @@ function getvid(full_title, songId){
           }).done(function(ytvidresponse){
 
               var iframe = $("<iframe>").attr({"id": "player", "width": "500", "height": "350", "frameborder": "0"});
-              var formatspace = $("<br>");
-              var formatline = $("<hr>");
+              // var formatspace = $("<br>");
+              // var formatline = $("<hr>");
               var ytvid_id = ytvidresponse.items[0].id.videoId;
               console.log("ytvid_id: " + ytvid_id);
               console.log("full_title: " + full_title);
 
               var src = 'https://www.youtube.com/embed/' + ytvid_id;
 
-              formatline.css("width", "55%");
-              formatline.css("background-color", "green");
+              // formatline.css("width", "55%");
+              // formatline.css("background-color", "green");
               iframe.attr("src", src);
 
-              var videoDiv = $("<div>");
+              var videoDiv = $("<div class = video>");
             
+              $(videoDiv).append($("<hr>"));
               $(videoDiv).append(iframe);
-              $(videoDiv).append(formatspace);
-              $(videoDiv).append(formatline);
-              $(videoDiv).append(formatspace);
+              // $(videoDiv).append(formatspace);
+              $(videoDiv).append($("<hr>"));
+              // $(videoDiv).append(formatspace);
 
               lyricsObject[songId].videoDiv = videoDiv;
 

@@ -75,13 +75,22 @@ button{
 	}
 
 h2{
-	font-weight: 50px;
+	font-weight: 700;
 	font-size: 25px;
 	margin-top: 20px;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 }
 
-p:hover{
+hr{
+/*	width: 55%;
+	background-color :green;*/
+	visibility: hidden;
+
+}
+
+.video{
+	margin-top: 40px;
+	margin-bottom: 60px;
 	
 }
 
