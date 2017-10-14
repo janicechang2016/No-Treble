@@ -67,11 +67,17 @@ function getvid(full_title, songId){
               formatline.css("width", "55%");
               formatline.css("background-color", "green");
               iframe.attr("src", src);
+
+              var videoDiv = $("<div>");
             
-              $("#" + songId).append(iframe);
-              $("#" + songId).append(formatspace);
-              $("#" + songId).append(formatline);
-              $("#" + songId).append(formatspace);
+              $(videoDiv).append(iframe);
+              $(videoDiv).append(formatspace);
+              $(videoDiv).append(formatline);
+              $(videoDiv).append(formatspace);
+
+              lyricsObject[songId].videoDiv = videoDiv;
+
+              $("#"+ songId).append(videoDiv);
           });
         }
 
@@ -261,6 +267,7 @@ $(document).ready(function() {
             image.css("float", "left");
             mainContentDivWithSongId.prepend(image);
             mainContentDivWithSongId.prepend(title);
+            mainContentDivWithSongId.append(lyricsObject[songId].videoDiv);
 
 
 
